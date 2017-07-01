@@ -11,7 +11,9 @@ namespace SimplyHello
         static void Main(string[] args)
         {
             // Write output
-            Console.WriteLine("Hello World");
+            SimpleDataWriter simpleDataWriter = new SimpleDataWriter();
+
+            simpleDataWriter.SayHello();
 
             Console.WriteLine("Press any key to continue...");
             Console.ReadLine();
