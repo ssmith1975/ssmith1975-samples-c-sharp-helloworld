@@ -11,7 +11,7 @@ namespace SimplyHello
         static void Main(string[] args)
         {
             // Write output
-            SimpleDataWriter simpleDataWriter = new SimpleDataWriter();
+            IWriteHello simpleDataWriter = new SimpleDataWriter();
 
             simpleDataWriter.SayHello();
 
