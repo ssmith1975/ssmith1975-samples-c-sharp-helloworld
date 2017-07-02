@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimplyHello
-{
-    public interface IWriteHello
-    {
+namespace SimplyWriterLib {
+    /// <summary>
+    /// Requires implementation class to 
+    /// </summary>
+    public interface IWriteHello {
+        
         void SayHello();
-
 
     }
 }
