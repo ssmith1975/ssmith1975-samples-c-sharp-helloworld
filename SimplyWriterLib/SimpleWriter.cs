@@ -1,12 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SimplyWriterLib {
-    public class SimpleWriter : SimpleWriterBase {
+    public class SimpleWriter : SimpleWriterStreamBase {
 
-        // Inherits the ability to write to console/screen from base class
+        public SimpleWriter(){
+           
+            // Inherits the ability to write to console/screen from base class
+            Stream = Console.OpenStandardOutput();
+          
+        }
+
+
+
     }
 }

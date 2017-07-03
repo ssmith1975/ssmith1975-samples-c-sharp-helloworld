@@ -9,13 +9,11 @@ using System.Net.Sockets;
 
 
 namespace SimplyWriterLib {
-    class SimpleHttpWriter : SimpleWriterBase {
+    class SimpleHttpWriter : SimpleWriterStreamBase {
         public SimpleHttpWriter() {
-        }
-        public override void SayHello() {
 
-            HttpContext.Current.Response.Write(TEXT);
-
+            // Output to web browser
+            Stream = HttpContext.Current.Response.OutputStream;
         }
     }
 }

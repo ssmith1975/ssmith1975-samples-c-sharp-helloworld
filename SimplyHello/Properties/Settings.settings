@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SimplyHello.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="WriterType" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SimpleWriterFile</Value>
+    </Setting>
+    <Setting Name="OutputFileFullPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">D:\DEV\temp\SimpleWriteStream.txt</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

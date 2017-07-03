@@ -2,34 +2,70 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
 namespace SimplyWriterLib {
-    public class SimpleWriterFile : SimpleWriterBase {
-        private string fileName;
+    public class SimpleWriterFile : SimpleWriterStreamBase {
+        public string FileName { get; set; }
 
         public SimpleWriterFile() {
-            string currentDirectory;
 
             // Create file in current directory the application is running in
-            currentDirectory = Directory.GetCurrentDirectory();
-            fileName = currentDirectory + @"\SimpleOutput.txt"; 
+            FileName =  Path.GetFullPath(@".\SimpleWriterFileOutput.txt");
+            Stream = createFileStream();
+            Console.WriteLine("Output file to current directory {0}", FileName);
         }
 
+        public SimpleWriterFile(string fileName) {
 
-        public override void SayHello() {
+            FileName = fileName;
+            Stream = createFileStream();
+            Console.WriteLine("Output file to selected directory {0}", FileName);
+        }
 
-            // Create StreamWriter instance
-            using (StreamWriter writer = new StreamWriter(fileName)) {
+        private Stream createFileStream() {
+            FileStream fileStream;
 
-                Console.WriteLine("Writing to {0}...", fileName);
+            // Setup target directory
+            string filePathDirectory = Path.GetDirectoryName(FileName);
 
-                // Output content to file
-                writer.Write(TEXT);
+            if (!Directory.Exists(filePathDirectory)) {
+
+                if (HasWriteAccessToFile(FileName)) {
+                    Directory.CreateDirectory(filePathDirectory);
+                } else {
+                    string errorMsg;
+
+                    errorMsg = String.Format("Not authorized to create file in {0} directory", filePathDirectory);
+                    throw new UnauthorizedAccessException(errorMsg);
+                }
+
             }
 
+            // Create FileStream instance
+            fileStream = new FileStream(FileName, FileMode.Create);
+            return fileStream;
         }
+
+        //}
+        // Method borrowed from StackOverflow 
+        // (https://stackoverflow.com/questions/130617/how-do-you-check-for-permissions-to-write-to-a-directory-or-file)
+        private static bool HasWriteAccessToFile(string filePath) {
+            try {
+                var permissionSet = new PermissionSet(PermissionState.None);
+                var writePermission = new FileIOPermission(FileIOPermissionAccess.Write, filePath);
+                permissionSet.AddPermission(writePermission);
+                return permissionSet.IsSubsetOf(AppDomain.CurrentDomain.PermissionSet);
+            } catch (Exception ex) {
+
+
+                return false;
+            }
+        }
+
     }
 }
