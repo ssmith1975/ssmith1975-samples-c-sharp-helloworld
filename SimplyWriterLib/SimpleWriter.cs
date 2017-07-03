@@ -9,10 +9,10 @@ namespace SimplyWriterLib {
     public class SimpleWriter : SimpleWriterStreamBase {
 
         public SimpleWriter(){
-           
+
             // Inherits the ability to write to console/screen from base class
             Stream = Console.OpenStandardOutput();
-          
+        
         }
 
 

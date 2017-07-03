@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 
 namespace SimplyWriterLib {
-    public abstract class SimpleWriterBase : IWriteHello {
+    public abstract class SimpleWriterBase : IWriteHello, IDisposable{
 
         public const string TEXT = "Hello World";
 
@@ -17,6 +17,9 @@ namespace SimplyWriterLib {
         public virtual void SayHello() {
             
             Console.WriteLine(TEXT);
+        }
+        public virtual void Dispose() {
+
         }
 
     }

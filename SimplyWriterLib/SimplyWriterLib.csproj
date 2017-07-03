@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IArrayBytes.cs" />
     <Compile Include="IWriteHello.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleHttpWriter.cs" />
@@ -48,6 +49,7 @@
     <Compile Include="SimpleWriterBase.cs" />
     <Compile Include="SimpleWriterFactory.cs" />
     <Compile Include="SimpleWriterFile.cs" />
+    <Compile Include="SimpleWriterMemory.cs" />
     <Compile Include="SimpleWriterStreamBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

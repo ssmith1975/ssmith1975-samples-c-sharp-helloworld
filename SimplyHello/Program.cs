@@ -16,14 +16,34 @@ namespace SimplyHello {
             // Grab writer type from project settings
             //writerType = Properties.Settings.Default.WriterType;
 
-            writerType = "SimpleWriterFile";
+            writerType = "SimpleWriterMemory";
+            //writerType = "SimpleWriter";
             outputFileFullPath = Properties.Settings.Default.OutputFileFullPath;
 
             // Create instance from factory method
             IWriteHello simpleDataWriter = SimpleWriterFactory.GetWriter(writerType);
 
-            // Write output
-            simpleDataWriter.SayHello();
+            if (simpleDataWriter is SimpleWriterStreamBase) {
+            
+                using (SimpleWriterStreamBase simpleWriterStream = (SimpleWriterStreamBase)simpleDataWriter) {
+
+                    // Write output within using statement to ensure Dispose
+                    simpleDataWriter.SayHello();
+
+                    if (simpleWriterStream is SimpleWriterMemory) {
+                        ((SimpleWriterMemory)simpleDataWriter).ReadFromMemory();
+                    }
+
+                }
+
+            } else {
+                // Write output
+                simpleDataWriter.SayHello();
+            }
+
+
+
+            
 
 
           /*
@@ -48,22 +68,6 @@ namespace SimplyHello {
             */
 
             //Console.WriteLine(memory.ReadByte());
-
-            //// Display the files to the current output source to the console.
-            //Console.WriteLine(str);
-
-
-            //// Redirect output to a file named Files.txt and write file list.
-            //StreamWriter sw = new StreamWriter(@".\Files.txt");
-            //sw.AutoFlush = true;
-            //Console.SetOut(sw);
-            //Console.Out.WriteLine(str);
-
-            //// Close previous output stream and redirect output to standard output.
-            //Console.Out.Close();
-            //sw = new StreamWriter(Console.OpenStandardOutput());
-            //sw.AutoFlush = true;
-            //Console.SetOut(sw);
 
 
 
