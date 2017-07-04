@@ -5,10 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SimplyWriterLib {
-    public interface IArrayBytes {
-        byte[] ArrayBytes {
-            get;
-           // set;
-        }
+    /// <summary>
+    /// Requires implementation class to 
+    /// </summary>
+    public interface ISimplyWrite {
+        
+        void SimplyWrite();
+
     }
 }

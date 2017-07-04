@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 namespace SimplyWriterLib {
     public class SimpleWriterFactory {
 
-        public static IWriteHello GetWriter(string writerType, params object[] args) {
+        public static ISimplyWrite GetWriter(string writerType="", params object[] args) {
             string stringClassName;
             Type selectedType;
 
             // If writerType is null/empty, default to console/screen output
             if (String.IsNullOrEmpty(writerType)) {
+
                 // Default to console mode
                 writerType = "SimpleWriter";
             }
@@ -24,15 +25,15 @@ namespace SimplyWriterLib {
             selectedType = Type.GetType(stringClassName);
 
             // Check that writer type is a valid type
-            if (!typeof(IWriteHello).IsAssignableFrom(selectedType)) {
+            if (!typeof(ISimplyWrite).IsAssignableFrom(selectedType)) {
                 
                 string errorMsg = String.Format("{0} is an invalid writer type", stringClassName);
 
-                throw new ArgumentException( errorMsg);
+                throw new ArgumentException(errorMsg);
             }
 
             // Create and return instance of writer type of as an IWriteHello object
-            return (IWriteHello)(Activator.CreateInstance(selectedType, args));
+            return (ISimplyWrite)(Activator.CreateInstance(selectedType, args));
 
         }
 

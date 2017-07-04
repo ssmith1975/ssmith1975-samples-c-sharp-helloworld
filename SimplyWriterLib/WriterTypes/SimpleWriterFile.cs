@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 using System.Web;
 
 namespace SimplyWriterLib {
-    public class SimpleWriterFile : SimpleWriterStreamBase {
-        public string FileName { get; set; }
+    public class SimpleWriterFile : SimpleWriterBase {
 
         public SimpleWriterFile():this(@".\SimpleWriterFileOutput.txt") {
 
@@ -20,52 +19,53 @@ namespace SimplyWriterLib {
 
         public SimpleWriterFile(string fileName) {
             
-            // Get full path of file name
-            FileName = Path.GetFullPath(fileName);
-           
-           // Create FileStream instance once
-            Stream = createFileStream(); 
-
-            // What to do when SayHello completes
-            OnEndSayHello = (bw) => {
-                Console.WriteLine("Output file to selected directory {0}", FileName);
-
-                // Close BinaryWriter stream and call Dispose at end of SayHello
-                bw.Close();
-                base.Dispose();
-
-            };
+           // // Get full path of file name
+           FileName = Path.GetFullPath(fileName);
+           setupTargetDirectory(fileName);
 
         }
 
-        private Stream createFileStream() {
-            string filePathDirectory;
-            FileStream fileStream;
-           
+        private string FileName {
+            get; set;
+        }
+
+        public override void SimplyWrite() {
+
+
+            // Create FileStream object
+            using (Stream stream = new FileStream(FileName, FileMode.Create)) {
+
+                // Write output to file
+                WriteMemoryToStream(stream);
+                stream.Flush();
+                Console.WriteLine("Output file to selected directory {0}", FileName);
+            }
+               // Memory.Dispose();
+        }
+        private void setupTargetDirectory(string filename) {
+           string filePathDirectory;
+           string errorMsg;
+
             // Setup target directory
-           filePathDirectory = Path.GetDirectoryName(FileName);
+           filePathDirectory = Path.GetDirectoryName(filename);
 
             // Does target directory exists?
             if (!Directory.Exists(filePathDirectory)) {
 
                 // Setup write permission on file
-                if (HasWriteAccessToFile(FileName)) {
+                if (HasWriteAccessToFile(filename)) {
                     Directory.CreateDirectory(filePathDirectory);
                 } else {
-                    string errorMsg;
 
                     // Setup error
                     errorMsg = String.Format("Not authorized to create file in {0} directory", filePathDirectory);
+
+                    // Throw exception
                     throw new UnauthorizedAccessException(errorMsg);
                 }
 
             }
 
-            // Create FileStream instance
-            fileStream = new FileStream(FileName, FileMode.Create);
-            //Stream fileStream2 = File.WriteAllBytes();
-
-            return fileStream;
         }
 
         //}

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SimplyHello.Properties {
+namespace SimpleWeb.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -25,19 +25,10 @@ namespace SimplyHello.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("SimpleWriterFile")]
+        [global::System.Configuration.DefaultSettingValueAttribute("SimpleHttpWriter")]
         public string WriterType {
             get {
                 return ((string)(this["WriterType"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(" D:\\DEV\\temp\\myfile.txt")]
-        public string OutputFileFullPath {
-            get {
-                return ((string)(this["OutputFileFullPath"]));
             }
         }
     }
