@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SimplyWriterLib {
+﻿namespace SimplyWriterLib {
     /// <summary>
-    /// Requires implementation class to 
+    /// Will require a class to implement a SimplyWrite method for writing output
     /// </summary>
     public interface ISimplyWrite {
         

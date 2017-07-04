@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SimplyWriterLib;
-using System.Reflection;
-using System.IO;
+﻿using SimplyWriterLib;
+using System;
 
 namespace SimplyHello {
     class Program {
