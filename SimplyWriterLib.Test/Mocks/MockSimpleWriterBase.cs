@@ -1,34 +1,56 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using SimplyWriterLib;
 using System.IO;
+using System.Diagnostics;
 
+namespace SimplyWriterLib.Test.Mocks {
+    /// <summary>
+    /// Simulates abstract SimpleWriterBase class (note: mock is not abstract)
+    /// </summary>
+    public class MockSimpleWriterBase : ISimplyWrite {
+        public bool SimplyWriteSpy = false;
+        public bool WriteMemoryToStreamSpy = false;
+        public MemoryStream MemorySpy;
+        public Stream ReceiverStreamSpy;
 
-namespace SimplyWriterLib {
-    public abstract class SimpleWriterBase : ISimplyWrite {
 
         public const string TEXT = "Hello World";
 
         public static MemoryStream Memory {
             get; private set;
         }
-        
+
         public byte[] ByteArray {
             get; private set;
         }
 
-            
-        public SimpleWriterBase() {
+        public MockSimpleWriterBase() {
 
             // Create Memory instance, if not created yet
             if (Memory == null) {
                 Memory = StoreInMemoryStream();
-                ByteArray = Memory.ToArray();
             }
+
+            ByteArray = Memory.ToArray();
+
+
+            MemorySpy = Memory;
 
         }
 
-        public abstract void SimplyWrite();
+        public void SimplyWrite() { // method would be abstact, but needed a spy for testing purposes
+
+            SimplyWriteSpy = true;
+            //WriteMemoryToStream(ReceiverStreamSpy);
+
+        }
 
         public void WriteMemoryToStream(Stream stream) {
+            //Memory = MemorySpy;
             // Reset position to start
             Memory.Position = 0;
 
@@ -36,9 +58,8 @@ namespace SimplyWriterLib {
             Memory.WriteTo(stream);
             Memory.Flush();
 
-            //var str = ReadFromMemoryStream(stream);
-            //Console.WriteLine("Stream check: {0}", str);
-
+            WriteMemoryToStreamSpy = true;
+            //ReceiverStreamSpy = stream;
         }
 
         private MemoryStream StoreInMemoryStream() {
@@ -55,14 +76,21 @@ namespace SimplyWriterLib {
         }
 
         public string ReadFromMemoryStream(Stream stream) {
+            //string str ="";
 
+            //StreamReader sr = new StreamReader(stream);
+            ////using (StreamReader sr = new StreamReader(stream)) {
+
+            //    str = sr.ReadToEnd();
+            ////}
+
+            //return str;
             stream.Position = 0;
 
             var sr = new StreamReader(stream);
             var myStr = sr.ReadToEnd();
 
             return myStr;
-
         }
 
     }

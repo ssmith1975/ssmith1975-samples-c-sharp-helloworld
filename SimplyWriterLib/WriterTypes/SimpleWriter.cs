@@ -13,10 +13,10 @@ namespace SimplyWriterLib {
         }
 
         public override void SimplyWrite() {
-            // Create stream to output into console/screen
+            //Create stream to output into console/screen
             using (Stream stream = Console.OpenStandardOutput()) {
 
-               // Write to console/screen
+                // Write to console/screen
                 WriteMemoryToStream(stream);
                 stream.Flush();
 
@@ -25,4 +25,6 @@ namespace SimplyWriterLib {
         }
 
     }
+
+
 }

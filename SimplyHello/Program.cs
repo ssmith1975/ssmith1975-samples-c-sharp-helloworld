@@ -14,7 +14,12 @@ namespace SimplyHello {
             outputFileFullPath = Properties.Settings.Default.OutputFileFullPath; // D:\DEV\temp\myfile.txt
 
             // Create instance from factory method
-            ISimplyWrite simpleDataWriter = SimpleWriterFactory.GetWriter(writerType, outputFileFullPath);
+            //Prints to console/screen
+            ISimplyWrite simpleDataWriter = SimpleWriterFactory.GetWriter();
+
+            // Prints to file
+            // ISimplyWrite simpleDataWriter = SimpleWriterFactory.GetWriter(writerType, outputFileFullPath);
+
             simpleDataWriter.SimplyWrite();
 
            
