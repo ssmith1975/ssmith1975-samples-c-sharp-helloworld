@@ -17,7 +17,7 @@ Supports three writer types:
 <p>This library also return "Hello World" in an byte array, which provides greater flexibility for writing to databases, for example.</p>
 
 ### Configuration
-![Alt ProjectSettings](Screenshots/screenshot_SimpleWriter.png?raw=true "ProjectSettings")
+![Alt ProjectSettings](Screenshots/screenshot_ProjectSettings.png?raw=true "ProjectSettings")
 Optionally store writer type into Project Settings of an application as a <b>string</b> variable called <var>WriterType</var>. Then refer writer type as:
 
 <pre>
