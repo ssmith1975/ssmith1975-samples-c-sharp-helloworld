@@ -17,6 +17,7 @@ Supports three writer types:
 <p>This library also return "Hello World" in an byte array, which provides greater flexibility for writing to databases, for example.</p>
 
 ### Configuration
+![Alt ProjectSettings](Screenshots/screenshot_SimpleWriter.png?raw=true "ProjectSettings")
 Optionally store writer type into Project Settings of an application as a <b>string</b> variable called <var>WriterType</var>. Then refer writer type as:
 
 <pre>
@@ -25,6 +26,7 @@ string writerType = Properties.Settings.Default.WriterType;
 
 ## Example use of API:
 ### Output to console/screen
+![Alt SimpleWriter](Screenshots/screenshot_SimpleWriter.png?raw=true "SimpleWriter")
 <pre>
 // Include a reference to SimplyWriterLib in project
 using SimplyWriterLib;
@@ -40,6 +42,7 @@ simpleDataWriter.SimplyWrite();
 </pre>
 
 ### Output to file
+![Alt SimpleWriterFile](Screenshots/screenshot_SimpleWriterFile.png?raw=true "SimpleWriterFile")
 <pre>
 // Include a reference to SimplyWriterLib in project
 using SimplyWriterLib;
@@ -57,6 +60,9 @@ simpleDataWriter.SimplyWrite();
 </pre>
 
 ### Output to web as plain text
+
+![Alt SimpleHttpWriter](Screenshots/screenshot_SimpleHttpWriter.png?raw=true "SimpleHttpWriter")
+
 <pre>
 using SimplyWriterLib;
 using System;
